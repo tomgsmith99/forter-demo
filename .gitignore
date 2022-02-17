@@ -1,0 +1,6 @@
+.DS_Store
+.env*
+!.env_example
+node_modules
+public/img
+todo.txt

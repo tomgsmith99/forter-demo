@@ -1,0 +1,74 @@
+{
+	"00uptdgk3iNZYSAc10h7": {
+		"accountId": "lois-abc-123",
+		"first_name": "Lois",
+		"last_name": "Lane",
+		"phone": "613-555-1212",
+		"expected_response": "APPROVE",
+		"use_case": "login"
+	},
+	"00u12h404fjSQ6JOs0h8": {
+		"accountId": "clark-abc-123",
+		"first_name": "Clark",
+		"last_name": "Kent",
+		"phone": "214-555-1212",
+		"expected_response": "VERIFICATION_REQUIRED",
+		"use_case": "login"
+	},
+	"00u12h3y4wdZxVq7m0h8": {
+		"accountId": "lex-abc-123",
+		"first_name": "Lex",
+		"last_name": "Luthor",
+		"phone": "562-555-1212",
+		"expected_response": "DECLINE",
+		"use_case": "login"
+	},
+	"selina": {
+		"accountId": "selina-abc-123",
+		"first_name": "Selina",
+		"last_name": "Kyle",
+		"phone": "815-555-1212",
+		"expected_response": "APPROVE",
+		"use_case": "registration"
+	},
+	"catelyn": {
+		"accountId": "cat-abc-123",
+		"first_name": "Catelyn",
+		"last_name": "Stark",
+		"phone": "772-555-1212",
+		"expected_response": "DECLINE",
+		"use_case": "registration"
+	},
+	"joaquin": {
+		"accountId": "joaquin-abc-123",
+		"first_name": "Joaquin",
+		"last_name": "Phoenix",
+		"phone": "617-555-1212",
+		"expected_response": "DECLINE",
+		"use_case": "registration"
+	},
+	"leia": {
+		"accountId": "leia-abc-123",
+        "first_name": "Leia",
+        "last_name": "Organa",
+		"phone": "314-555-1212",
+ 		"expected_response": "APPROVE",
+       	"use_case": "profile"
+	},
+	"00u15j3dq4ntM2SQX0h8": {
+		"accountId": "lando-abc-123",
+		"first_name": "Lando",
+		"last_name": "Calrissian",
+		"phone": "518-555-1212",
+ 		"expected_response": "VERIFICATION_REQUIRED",
+ 		"use_case": "profile"
+	},
+	"darth": {
+		"accountId": "darth-abc-123",
+		"first_name": "Darth",
+		"last_name": "Vader",
+		"phone": "508-555-1212",
+		"expected_response": "DECLINE",
+		"use_case": "profile"
+	}
+}
