@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Forter demo: {{ brand }}</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family={{ font | urlencode }}:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '{{ color }}',
+                    },
+
+                    fontFamily: {
+                        sans: '{{ font }}',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        {% include "partials/tailwind.css" %}
+    </style>
+
+    <script
+        src="https://unpkg.com/alpinejs@3.x/dist/cdn.min.js"
+        defer
+    ></script>
+</head>
+
+<body class="text-gray-800 text-sm">
+    <div class="md:flex min-h-screen">
+        <div class="md:w-1/2 p-8 md:py-24">
+            <div class="max-w-lg mx-auto space-y-12">
+                {% block logo %}
+                <img
+                    class="w-24"
+                    src="{{ logo }}"
+                    alt=""
+                >
+                {% endblock %}
+
+                {% block main %}{% endblock %}
+            </div>
+        </div>
+
+        <div class="md:w-1/2 relative p-8 md:py-24 bg-brand text-white">
+            <div class="max-w-md mx-auto space-y-12">
+                <div>
+                    <img
+                        src="{{ article1_img }}"
+                        class="aspect-[2/1] rounded-xl object-cover shadow-lg"
+                        alt=""
+                    >
+                    <h3 class="text-2xl font-bold mt-4">{{ article1_title }}</h3>
+                    <p class="mt-2">{{ article1_text }}</p>
+                </div>
+
+                <div>
+                    <img
+                        src="{{ article2_img }}"
+                        class="aspect-[2/1] rounded-xl object-cover shadow-lg"
+                        alt=""
+                    >
+                    <h3 class="text-2xl font-bold mt-4">{{ article2_title }}</h3>
+                    <p class="mt-2">{{ article2_text }}</p>
+                </div>
+            </div>
+
+            <div class="md:absolute bottom-0 right-0 md:p-8 mt-12">
+                <div class="flex flex-wrap md:justify-end gap-4 md:text-right">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Contact</a>
+                    <div class="w-full">© Forter {{ year }}. All Rights Reserved.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

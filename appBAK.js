@@ -44,40 +44,9 @@ app.use(express.static('public'))
 
 app.use(session({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false}))
 
-// app.engine('html', mustacheExpress())
+app.engine('html', mustacheExpress())
 
-// app.set('view engine', 'html')
-
-nunjucks
-    .configure('views', {
-        autoescape: true,
-        express: app,
-        watch: true,
-    })
-    // .addGlobal('brand', process.env.DEMO_BRAND)
-    // .addGlobal('color', process.env.DEMO_COLOR)
-    // .addGlobal('font', process.env.DEMO_FONT)
-    // .addGlobal('logo', process.env.DEMO_LOGO)
-    // .addGlobal('article1_img', process.env.DEMO_ARTICLE1_IMG)
-    // .addGlobal('article1_title', process.env.DEMO_ARTICLE1_TITLE)
-    // .addGlobal('article1_text', process.env.DEMO_ARTICLE1_TEXT)
-    // .addGlobal('article2_img', process.env.DEMO_ARTICLE2_IMG)
-    // .addGlobal('article2_title', process.env.DEMO_ARTICLE2_TITLE)
-    // .addGlobal('article2_text', process.env.DEMO_ARTICLE2_TEXT)
-    // .addGlobal('logo', process.env.DEMO_LOGO)
-    // .addGlobal('year', new Date().getFullYear())
-    .addGlobal('brand', "Coca-Cola")
-    .addGlobal('color', process.env.DEMO_COLOR)
-    .addGlobal('font', process.env.DEMO_FONT)
-    .addGlobal('logo', process.env.DEMO_LOGO)
-    .addGlobal('article1_img', process.env.DEMO_ARTICLE1_IMG)
-    .addGlobal('article1_title', process.env.DEMO_ARTICLE1_TITLE)
-    .addGlobal('article1_text', process.env.DEMO_ARTICLE1_TEXT)
-    .addGlobal('article2_img', process.env.DEMO_ARTICLE2_IMG)
-    .addGlobal('article2_title', process.env.DEMO_ARTICLE2_TITLE)
-    .addGlobal('article2_text', process.env.DEMO_ARTICLE2_TEXT)
-    .addGlobal('logo', process.env.DEMO_LOGO)
-    .addGlobal('year', new Date().getFullYear())
+app.set('view engine', 'html')
 
 /*************************************************/
 
@@ -101,32 +70,14 @@ app.get('/favicon.ico', (req, res) => {
 	return
 })
 
-// app.get('/', (req, res) => {
-
-// 	let obj = JSON.parse(JSON.stringify(config))
-
-// 	obj.home = true
-
-// 	// res.render ('index', obj)
-
-// 	res.render ('index.html', obj)
-
-
-// })
-
 app.get('/', (req, res) => {
 
 	let obj = JSON.parse(JSON.stringify(config))
 
-	// obj.home = true
+	obj.home = true
 
-	// res.render ('index', obj)
-
-	res.render ('index.html', obj)
+	res.render ('index', obj)
 })
-
-app.get('/welcome', (req, res) => { res.render('welcome.html') })
-
 
 app.get('/session', function (req, res) {
 	if (req.session.authenticated) {
