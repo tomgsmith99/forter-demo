@@ -2,7 +2,7 @@
 
 {% block main %}
 <div
-    class="grid grid-cols-2 gap-x-4 gap-y-8 items-center rounded-xl p-8 bg-gray-50 border border-gray-100" x-data="{open: false}" id="reg_form"
+    class="grid grid-cols-2 gap-x-4 gap-y-8 items-center rounded-xl p-8 bg-gray-50 border border-gray-100" id="reg_form"
 >
     <div class="col-span-2 flex justify-between items-center">
         <h1 class="text-xl font-bold">Sign Up</h1>
@@ -48,6 +48,7 @@
 
         <input
             type="text"
+            x-model="inputs.first"
             id="first_name"
         >
     </label>
@@ -57,6 +58,7 @@
 
         <input
             type="text"
+            x-model="inputs.last"
             id="last_name"
         >
     </label>
@@ -66,6 +68,7 @@
 
         <input
             type="email"
+            x-model="inputs.email"
             id="email"
         >
     </label>
@@ -75,6 +78,7 @@
 
         <input
             type="password"
+            x-model="inputs.password"
             id="password"
         >
     </label>
@@ -103,11 +107,6 @@
 
 </div>
 
-<div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="reg_approve" style="display:none">
-    <h1 class="text-xl font-bold">Success!</h1>
-    <p>Thanks for creating an account with us, <span id="first_name_welcome"></span>!</p>
-    {% include "partials/decision-approve.html" %}
-</div>
 
 
 {% endblock %}

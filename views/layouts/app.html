@@ -28,6 +28,45 @@
         rel="stylesheet"
     >
 
+    <!-- ******* JAVASCRIPT ******** -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    {% if register %}
+        <script src="js/register.js"></script>
+    {% endif %}
+
+  <script type="text/javascript">
+    
+    function select_user(id, context) {
+
+        users_raw = localStorage.getItem("users")
+
+        users = JSON.parse(users_raw)
+
+        const user = users[id]
+
+        localStorage.setItem("user", JSON.stringify(user))
+
+        localStorage.setItem("user_id", id)
+
+        localStorage.setItem("email", user.email)
+
+        localStorage.setItem("first_name", user.first_name)
+
+        $("#password").val('{{public_password}}')
+
+        if (context == "login") {
+            $("#email").val(user.email_address)
+        }
+        else if (context == "register") {
+            $("#first_name").val(user.first_name)
+            $("#last_name").val(user.last_name)
+            $("#email").val(user.email_address)
+        }
+    }
+
+  </script>
+
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
     <script>
@@ -47,7 +86,53 @@
     </script>
 
     <style type="text/tailwindcss">
-        {% include "partials/tailwind.css" %}
+        @layer base {
+            [type='text'],
+            [type='email'],
+            [type='url'],
+            [type='password'],
+            [type='number'],
+            [type='date'],
+            [type='datetime-local'],
+            [type='month'],
+            [type='search'],
+            [type='tel'],
+            [type='time'],
+            [type='week'],
+            [multiple],
+            textarea,
+            select {
+                @apply w-full text-sm border border-gray-300 rounded focus:border-brand focus:ring-brand;
+            }
+
+            [type='radio'] {
+                @apply text-brand focus:ring-brand;
+            }
+
+            a,
+            button {
+                @apply duration-200;
+            }
+        }
+
+        @layer components {
+            .btn {
+                @apply inline-flex justify-center items-center py-2 px-4 rounded text-white bg-brand font-bold text-center hover:scale-105;
+            }
+
+            .btn:disabled,
+            .btn.disabled {
+                @apply pointer-events-none opacity-50;
+            }
+
+            .link {
+                @apply text-brand hover:text-current underline;
+            }
+
+            [x-cloak] {
+                @apply !hidden;
+            }
+        }
     </style>
 
     <script
@@ -61,11 +146,13 @@
         <div class="md:w-1/2 p-8 md:py-24">
             <div class="max-w-lg mx-auto space-y-12">
                 {% block logo %}
+                <a href = "/">
                 <img
-                    class="w-24"
-                    src="{{ logo }}"
+                    class="w-24 mx-auto"
+                    src="{{ logo_url }}"
                     alt=""
                 >
+                </a>
                 {% endblock %}
 
                 {% block main %}{% endblock %}

@@ -2,7 +2,48 @@
 
 {% block main %}
 <div
-    class="grid grid-cols-2 gap-x-4 gap-y-8 items-center rounded-xl p-8 bg-gray-50 border border-gray-100" x-data="{open: false}" id="reg_form"
+    class="grid grid-cols-2 gap-x-4 gap-y-8 items-center rounded-xl p-8 bg-gray-50 border border-gray-100"
+    x-data="{
+        open: false,
+
+        inputs: {
+            first: null,
+            last: null,
+            email: null,
+            password: null,
+        },
+
+        options: {
+            sk: {
+                first: 'Selina',
+                last: 'Kyle',
+                email: 'selina.kyle@mailinator.com',
+                password: 'password',
+            },
+
+            cs: {
+                first: 'Catelyn',
+                last: 'Stark',
+                email: 'catelyn.stark@mailinator.com',
+                password: 'password',
+            },
+
+            jp: {
+                first: 'Joaquin',
+                last: 'Phoenix',
+                email: 'joaquin.phoenix@mailinator.com',
+                password: 'password',
+            },
+        },
+
+        fill(initials) {
+            this.inputs = this.options[initials]
+        },
+
+        get isFilled() {
+            return Object.values(this.inputs).filter(v => v).length === Object.values(this.inputs).length
+        }
+    }"
 >
     <div class="col-span-2 flex justify-between items-center">
         <h1 class="text-xl font-bold">Sign Up</h1>
@@ -28,16 +69,12 @@
                 x-cloak
                 @click.outside="open = false"
             >
-                {% for username, data in users %}
-
-                {% if data.registration %}
-
+                {% for initials, name in { sk: 'Selina Kyle', cs: 'Catelyn Stark', jp: 'Joaquin Phoenix' } %}
                 <button
                     type="button"
                     class="block w-full text-left px-4 py-2 hover:bg-gray-50"
-                    @click="select_user('{{username}}', 'register')"
-                >{{ data.full_name }}</button>
-                {% endif %}
+                    @click="fill('{{ initials }}')"
+                >{{ name }}</button>
                 {% endfor %}
             </div>
         </div>
@@ -48,7 +85,7 @@
 
         <input
             type="text"
-            id="first_name"
+            x-model="inputs.first"
         >
     </label>
 
@@ -57,7 +94,7 @@
 
         <input
             type="text"
-            id="last_name"
+            x-model="inputs.last"
         >
     </label>
 
@@ -66,7 +103,7 @@
 
         <input
             type="email"
-            id="email"
+            x-model="inputs.email"
         >
     </label>
 
@@ -75,39 +112,16 @@
 
         <input
             type="password"
-            id="password"
+            x-model="inputs.password"
         >
     </label>
 
     <button
         type="button"
         class="btn col-span-2"
-        onclick="register()"
+        :disabled="!isFilled"
     >Go</button>
-
 </div>
 
 {% include 'partials/already-have.html' %}
-
-<div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="reg_decline" style="display: none;">
-    <h1 class="text-xl font-bold">Sign In</h1>
-    <p>Sorry, something is not quite right. Please contact customer support for further assistance.</p>
-    {% include "partials/decision-decline.html" %}
-
-    <a
-        href="#"
-        class="btn w-full"
-    >Back</a>
-
-{% include "partials/contact-support.html" %}
-
-</div>
-
-<div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="reg_approve" style="display:none">
-    <h1 class="text-xl font-bold">Success!</h1>
-    <p>Thanks for creating an account with us, <span id="first_name_welcome"></span>!</p>
-    {% include "partials/decision-approve.html" %}
-</div>
-
-
 {% endblock %}

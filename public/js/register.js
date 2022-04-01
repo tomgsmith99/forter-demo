@@ -49,15 +49,21 @@ function register() {
 
     	let user_msg
 
+        $("#already_have").hide()
+
     	if (data.error || data.forter_decision == "DECLINE") {
 
-    		user_msg = "<p style='background-color: lightyellow'>Sorry, something is not quite right. Please contact customer support for further assistance.</p>"
+            $("#reg_decline").show()
     	}
     	else {
 
     		const first_name = localStorage.getItem("first_name")
 
-    		user_msg = "<p style='background-color: palegreen'>Success!</p><p>Thanks for creating an account with us, " + first_name + "!"
+            $("#first_name_welcome").html(first_name)
+
+            $("#reg_approve").show()
+
+    		// user_msg = "<p style='background-color: palegreen'>Success!</p><p>Thanks for creating an account with us, " + first_name + "!"
     	}
 
     	$("#instrux").hide()

@@ -5,6 +5,7 @@
 		"last_name": "Lane",
 		"phone": "613-555-1212",
 		"expected_response": "APPROVE",
+		"login": true,
 		"use_case": "login"
 	},
 	"00u12h404fjSQ6JOs0h8": {
@@ -13,6 +14,7 @@
 		"last_name": "Kent",
 		"phone": "214-555-1212",
 		"expected_response": "VERIFICATION_REQUIRED",
+		"login": true,
 		"use_case": "login"
 	},
 	"00u12h3y4wdZxVq7m0h8": {
@@ -21,6 +23,7 @@
 		"last_name": "Luthor",
 		"phone": "562-555-1212",
 		"expected_response": "DECLINE",
+		"login": true,
 		"use_case": "login"
 	},
 	"selina": {
@@ -29,6 +32,7 @@
 		"last_name": "Kyle",
 		"phone": "815-555-1212",
 		"expected_response": "APPROVE",
+		"registration": true,
 		"use_case": "registration"
 	},
 	"catelyn": {
@@ -37,6 +41,7 @@
 		"last_name": "Stark",
 		"phone": "772-555-1212",
 		"expected_response": "DECLINE",
+		"registration": true,
 		"use_case": "registration"
 	},
 	"joaquin": {
@@ -45,6 +50,7 @@
 		"last_name": "Phoenix",
 		"phone": "617-555-1212",
 		"expected_response": "DECLINE",
+		"registration": true,
 		"use_case": "registration"
 	},
 	"leia": {
@@ -53,6 +59,7 @@
         "last_name": "Organa",
 		"phone": "314-555-1212",
  		"expected_response": "APPROVE",
+ 		"profile": true,
        	"use_case": "profile"
 	},
 	"00u15j3dq4ntM2SQX0h8": {
@@ -61,6 +68,7 @@
 		"last_name": "Calrissian",
 		"phone": "518-555-1212",
  		"expected_response": "VERIFICATION_REQUIRED",
+ 		"profile": true,
  		"use_case": "profile"
 	},
 	"darth": {
@@ -69,6 +77,7 @@
 		"last_name": "Vader",
 		"phone": "508-555-1212",
 		"expected_response": "DECLINE",
+ 		"profile": true,
 		"use_case": "profile"
 	}
 }

@@ -15,7 +15,9 @@ module.exports = function(app){
 
 		obj.register = true
 
-		res.render ('index', obj)
+		obj.users = req.app.get('users')
+
+		res.render ('register.html', obj)
 	})
 
 	app.post('/register', function (req, res) {

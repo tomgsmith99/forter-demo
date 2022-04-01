@@ -1,0 +1,2 @@
+why css in partial rather than hard-coded?
+
