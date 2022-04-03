@@ -31,41 +31,58 @@
     <!-- ******* JAVASCRIPT ******** -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    {% if register %}
-        <script src="js/register.js"></script>
+    {% if home %}
+    <script>
+
+      $.get("/users")
+      .done(function( data ) {
+        console.dir(data)
+
+        localStorage.setItem("users", JSON.stringify(data))
+      })
+    </script>
     {% endif %}
 
-  <script type="text/javascript">
-    
-    function select_user(id, context) {
+    {% if login %}
+    <script src="js/login.js"></script>
+    <script src="js/mfa.js"></script>
+    {% endif %}
 
-        users_raw = localStorage.getItem("users")
+    {% if register %}
+    <script src="js/register.js"></script>
+    {% endif %}
 
-        users = JSON.parse(users_raw)
+    <script type="text/javascript">
+        
+        function select_user(id, context) {
 
-        const user = users[id]
+            users_raw = localStorage.getItem("users")
 
-        localStorage.setItem("user", JSON.stringify(user))
+            users = JSON.parse(users_raw)
 
-        localStorage.setItem("user_id", id)
+            const user = users[id]
 
-        localStorage.setItem("email", user.email)
+            localStorage.setItem("user", JSON.stringify(user))
 
-        localStorage.setItem("first_name", user.first_name)
+            localStorage.setItem("user_id", id)
 
-        $("#password").val('{{public_password}}')
+            localStorage.setItem("email", user.email)
 
-        if (context == "login") {
-            $("#email").val(user.email_address)
+            localStorage.setItem("first_name", user.first_name)
+
+            $("#password").val('{{public_password}}')
+
+            if (context == "login") {
+                $("#email").val(user.email_address)
+            }
+            else if (context == "register") {
+                $("#first_name").val(user.first_name)
+                $("#last_name").val(user.last_name)
+                $("#email").val(user.email_address)
+            }
         }
-        else if (context == "register") {
-            $("#first_name").val(user.first_name)
-            $("#last_name").val(user.last_name)
-            $("#email").val(user.email_address)
-        }
-    }
 
-  </script>
+      </script>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 

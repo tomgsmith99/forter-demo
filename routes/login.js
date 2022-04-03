@@ -15,9 +15,11 @@ module.exports = function(app){
 
 		let obj = JSON.parse(JSON.stringify(config))
 
+		obj.users = req.app.get('users')
+
 		obj.login = true
 
-		res.render ('index', obj)
+		res.render ('login.html', obj)
 	})
 
 	app.post('/login', function (req, res) {
@@ -136,7 +138,7 @@ module.exports = function(app){
 				})
 				.catch(function (error) {
 					console.dir(error)
-					res.json({"error": "something went wrong with the request to forter"})
+					res.json({"error": "something went wrong with the request to Forter"})
 				})
 			}
 		})

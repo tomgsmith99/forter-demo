@@ -1,30 +1,30 @@
 
-window.onload = function() {
+// window.onload = function() {
 
-    users_raw = localStorage.getItem("users")
+//     users_raw = localStorage.getItem("users")
 
-    users = JSON.parse(users_raw)
+//     users = JSON.parse(users_raw)
 
-    let login_users_html = profile_users_html = users_html = ""
+//     let login_users_html = profile_users_html = users_html = ""
 
-    for (user in users) {
+//     for (user in users) {
 
-        let link = `<li><a class="dropdown-item" href="#" onclick="select_user('${user}', 'login')">${users[user].full_name}</a></li>`
+//         let link = `<li><a class="dropdown-item" href="#" onclick="select_user('${user}', 'login')">${users[user].full_name}</a></li>`
 
-        if (users[user].use_case == "login") {
-            login_users_html += link
-        }
-        else if (users[user].use_case == "profile") {
-            profile_users_html += link
-        }
-    }
+//         if (users[user].use_case == "login") {
+//             login_users_html += link
+//         }
+//         else if (users[user].use_case == "profile") {
+//             profile_users_html += link
+//         }
+//     }
 
-    users_html = login_users_html + '<li><hr class="dropdown-divider"></li>' + profile_users_html
+//     users_html = login_users_html + '<li><hr class="dropdown-divider"></li>' + profile_users_html
 
-    $("#login_users_list").html(users_html)
+//     $("#login_users_list").html(users_html)
 
-    $("#login_link").hide()
-}
+//     $("#login_link").hide()
+// }
 
 function show_mfa(factors) {
 
@@ -105,15 +105,15 @@ function update_ui(context, data) {
 
 function login() {
 
-    user_raw = localStorage.getItem("user")
+    const user_raw = localStorage.getItem("user")
 
-    user = JSON.parse(user_raw)
-
-    $("#login_error").hide()
+    const user = JSON.parse(user_raw)
 
 	const email = $("#email").val()
 
 	const password = $("#password").val()
+
+    $("#login_error").hide()
 
     if (user.use_case == "profile") {
 
@@ -137,16 +137,36 @@ function login() {
 
             $("#login_users").hide()
 
+            $("#login_form").hide()
+
             if (data.error) {
                 $("#login_error").show()
             }
             else {
 
-                $("#forter_decision_div").show()
-                $("#forter_decision").html(data.forter_decision)
+                if (data.forter_decision == "APPROVE") {
 
-                update_ui("login", data)
+                    $("#welcome_login_username").html(user.first_name)
+
+                    $("#login_success").show()
+                }
+
+                else if (data.forter_decision == "DECLINE") {
+                    $("#login_decline").show()
+                }
+
+                else if (data.forter_decision == "VERIFICATION_REQUIRED") {
+
+                    localStorage.setItem("factors", JSON.stringify(data.factors))
+
+                    $("#choose_factor").show()
+                }
             }
         })
     }
+}
+
+function logout() {
+    localStorage.clear()
+    location.reload()
 }

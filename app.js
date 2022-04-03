@@ -72,6 +72,7 @@ app.get('/favicon.ico', (req, res) => {
 })
 
 app.get('/', (req, res) => {
+	config.home = true
 	res.render ('index.html', config)
 })
 

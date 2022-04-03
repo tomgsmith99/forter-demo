@@ -1,24 +1,180 @@
+{% extends 'layouts/app.html' %}
 
-<div id = "login_form" style = "width: 300px;">
+{% block main %}
+<div
+    class="grid grid-cols-2 gap-x-4 gap-y-8 items-center rounded-xl p-8 bg-gray-50 border border-gray-100" x-data="{open: false}" id="login_form">
 
-	<h1>Sign in.</h1>
+    <div class="col-span-2 flex justify-between items-center">
+        <h1 class="text-xl font-bold">Sign In</h1>
 
-	<form>
+        <div class="relative">
+            <button
+                type="button"
+                class="inline-flex items-center gap-2 font-bold"
+                @click="open = !open"
+            >
+                <span>Users</span>
 
-	  <div class="mb-3">
-	    <label for="exampleInputEmail1" class="form-label">Email</label>
-	    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-	  </div>
+                <span
+                    class="mt-1 border-transparent border-t-current border-4 duration-200"
+                    :class="{ 'rotate-180 -mt-1': open }"
+                ></span>
+            </button>
 
-	  <div class="mb-3">
-	    <label for="exampleInputPassword1" class="form-label">Password</label>
-	    <input type="password" class="form-control" id="password">
-	  </div>
+            <div
+                class="py-1 absolute mt-2 right-0 rounded-lg bg-white w-40 shadow-md border border-gray-300 overflow-hidden"
+                x-show="open"
+                x-transition
+                x-cloak
+                @click.outside="open = false"
+            >
 
-	</form>
+                {% for username, data in users %}
 
-	<button class="btn btn-primary" onclick="login()">go</button>
+                {% if data.login %}
 
-	<p id = "login_error" style = "display: none; background-color: yellow; margin-top: 10px;">Sorry, that password was not correct.</p>
+                <button
+                    type="button"
+                    class="block w-full text-left px-4 py-2 hover:bg-gray-50"
+                    @click="select_user('{{username}}', 'register')"
+                >{{ data.full_name }}</button>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <label class="block space-y-2 col-span-2">
+        <span class="block font-bold">Email Address</span>
+
+        <input
+            type="email" id="email"
+        >
+    </label>
+
+    <label class="block space-y-2 col-span-2">
+        <span class="block font-bold">Password</span>
+
+        <input
+            type="password" id="password"
+        >
+    </label>
+
+    <button
+        type="button"
+        class="btn col-span-2"
+        onclick="login()"
+    >Go</button>
+</div>
+
+<div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="login_success" style="display: none;">
+    <h1 class="text-xl font-bold">Welcome, <span id="welcome_login_username"></span>!</h1>
+    {% include "partials/decision-approve.html" %}
+</div>
+
+<div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="login_decline" style="display: none;">
+    <h1 class="text-xl font-bold">Sign In</h1>
+    <p>Sorry, something is not quite right. Please contact customer support for further assistance.</p>
+    {% include "partials/decision-decline.html" %}
+
+    <a
+        href="#"
+        class="btn w-full"
+    >Back</a>
+
+{% include "partials/contact-support.html" %}
 
 </div>
+
+<div
+    class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8"
+    x-data="{ next: null }" id="choose_factor" style="display: none;">
+
+    <h1 class="text-xl font-bold">Verification required</h1>
+    <p>We need to verify your identity. Please choose from one of the following methods:</p>
+
+    <ul class="space-y-4 font-bold">
+        <li>
+            <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input
+                    type="radio"
+                    name="method"
+                    value="email"
+                    id="factor_type"
+                >
+
+                <span>Email verification with a security code</span>
+            </label>
+        </li>
+
+        <li>
+            <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input
+                    type="radio"
+                    name="method"
+                    value="question"
+                    id="factor_type"
+                >
+
+                <span>Security question</span>
+            </label>
+        </li>
+    </ul>
+
+    <a
+        :href="next"
+        class="btn w-full"
+        onclick="select_factor()"
+    >Go</a>
+</div>
+
+<div
+    class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8"
+    x-data="{ code: null }" id="factor_email" style="display: none;"
+>
+    <h1 class="text-xl font-bold">Verification required</h1>
+    <p>We have sent a security code to the email address on file (<strong>clark.kent@mailinator.com</strong>). Please enter a security code here:</p>
+
+    <input
+        type="text"
+        id="email_code"
+    >
+
+    <p>If you didn't receive the security code, please press <a
+            href="#"
+            class="link"
+        >Resend code</a></p>
+
+    <button
+        type="button"
+        class="btn w-full"
+        onclick="submit_factor('email')"
+    >Verify Code</a>
+</div>
+
+<div class="text-center font-bold" id="use_another_method" style="display: none;">
+    <a
+        href="#"
+        class="link"
+    >Use another method of verification</a>
+</div>
+
+<div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="mfa_success" style="display: none;">
+    <div class="flex justify-between items-center">
+        <h1 class="text-xl font-bold">Welcome, <span id="mfa_success_username"></span>!</h1>
+
+        <a
+            href="/"
+            class="link"
+            onclick="logout()"
+        >Log out</a>
+    </div>
+
+    <button
+        type="button"
+        class="btn w-full"
+    >Edit profile</button>
+</div>
+
+    {% endblock %}
