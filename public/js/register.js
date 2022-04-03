@@ -1,32 +1,10 @@
 
-window.onload = function() {
-
-    users_raw = localStorage.getItem("users")
-
-    users = JSON.parse(users_raw)
-
-    let reg_users_html = ""
-
-    for (user in users) {
-    	if (users[user].use_case == "registration") {
-        	reg_users_html += `<li><a class="dropdown-item" href="#" onclick="select_user('${user}', 'register')">${users[user].full_name}</a></li>`
-    	}
-    }
-
-    $("#reg_users_list").html(reg_users_html)
-
-    $("#login_link").hide()
-}
-
 function register() {
 
 	const email = $("#email").val()
 	const first_name = $("#first_name").val()
 	const last_name = $("#last_name").val()
 	const password = $("#password").val()
-
-	console.log("the register button was clicked.")
-	console.log(email)
 
     $.post(
         "/register", {
@@ -62,8 +40,6 @@ function register() {
             $("#first_name_welcome").html(first_name)
 
             $("#reg_approve").show()
-
-    		// user_msg = "<p style='background-color: palegreen'>Success!</p><p>Thanks for creating an account with us, " + first_name + "!"
     	}
 
     	$("#instrux").hide()

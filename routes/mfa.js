@@ -10,15 +10,6 @@ const OKTA_API_KEY = process.env.OKTA_API_KEY
 
 module.exports = function(app){
 
-
-	app.get('/factors/{{user_id}}', function(req, res) {
-
-		const { user_id } = req.params
-
-		console.log(user_id)
-
-	})
-
 	app.post('/mfa_response', function (req, res) {
 
 		const factor_type = req.body.factor_type
