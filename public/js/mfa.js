@@ -25,6 +25,8 @@ function select_factor() {
 
 	if (selected_factor == "email") {
 
+		$("#email_address_on_file").html(localStorage.getItem("email"))
+
 		$("#factor_email").show()
 
 		console.log("sending email challenge to user...")
@@ -67,16 +69,15 @@ function submit_factor(factor_type) {
 
     	const user = JSON.parse(user_raw)
 
-		$("#mfa_success").show()
+		$("#login_success").show()
 		$("#factor_email").hide()
 		$("#choose_factor").hide()
-		$("#mfa_success_username").html(user.first_name)
+		$("#welcome_login_username").html(user.first_name)
 
-		if (data.user_id && data.user_id == "00u15j3dq4ntM2SQX0h8") {
+		if (user.use_case == "profile") {
+    		$("#user_profile").show()
 
-    		$("#user_profile").hide()
-    		$("#profile_result_div").show()
-    		$("#profile_result").html("Your profile was successfully updated.")
+			show_profile()
 		}
     })
 }

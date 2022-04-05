@@ -36,8 +36,18 @@
                 <button
                     type="button"
                     class="block w-full text-left px-4 py-2 hover:bg-gray-50"
-                    @click="select_user('{{username}}', 'register')"
+                    @click="select_user('{{username}}')"
                 >{{ data.full_name }}</button>
+
+                {% endif %}
+
+                {% if data.profile %}
+                <button
+                    type="button"
+                    class="block w-full text-left px-4 py-2 hover:bg-gray-50"
+                    @click="select_user('{{username}}')"
+                >{{ data.full_name }}</button>
+
                 {% endif %}
                 {% endfor %}
 
@@ -70,11 +80,20 @@
 
 <div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="login_success" style="display: none;">
     <h1 class="text-xl font-bold">Welcome, <span id="welcome_login_username"></span>!</h1>
+    <div id = "forter_decision_approve" style="display:none">
     {% include "partials/decision-approve.html" %}
+    </div>
+
+    <button
+        type="button"
+        class="btn w-full"
+        onclick="update_profile()"
+    >Edit profile</button>
+
 </div>
 
 <div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="login_decline" style="display: none;">
-    <h1 class="text-xl font-bold">Sign In</h1>
+    <h1 class="text-xl font-bold" id="decline_header">Sign In</h1>
     <p>Sorry, something is not quite right. Please contact customer support for further assistance.</p>
     {% include "partials/decision-decline.html" %}
 
@@ -134,7 +153,7 @@
     x-data="{ code: null }" id="factor_email" style="display: none;"
 >
     <h1 class="text-xl font-bold">Verification required</h1>
-    <p>We have sent a security code to the email address on file (<strong>clark.kent@mailinator.com</strong>). Please enter a security code here:</p>
+    <p>We have sent a security code to the email address on file (<strong><span id="email_address_on_file"></span></strong>). Please enter a security code here:</p>
 
     <input
         type="text"
@@ -174,7 +193,71 @@
     <button
         type="button"
         class="btn w-full"
+        onclick="update_profile()"
     >Edit profile</button>
+</div>
+
+<div
+    class="grid grid-cols-2 gap-x-4 gap-y-8 items-center rounded-xl p-8 bg-gray-50 border border-gray-100" id="user_profile" style="display: none;">
+    <div class="col-span-2 flex justify-between items-center">
+
+        <h1 class="text-xl font-bold">Edit Profile</h1>
+
+        <a
+            href="/"
+            class="link"
+            onclick="logout()"
+        >Log out</a>
+    </div>
+
+    <label class="block space-y-2">
+        <span class="block font-bold">First Name</span>
+
+        <input
+            type="text"
+            id="first_name"
+        >
+    </label>
+
+    <label class="block space-y-2">
+        <span class="block font-bold">Last Name</span>
+
+        <input
+            type="text"
+            id="last_name"
+        >
+    </label>
+
+    <label class="block space-y-2 col-span-2">
+        <span class="block font-bold">Email Address</span>
+
+        <input
+            type="email"
+            id="email_addr"
+        >
+    </label>
+
+    <label class="block space-y-2 col-span-2">
+        <span class="block font-bold">Phone</span>
+
+        <input
+            type="tel"
+            id="phone"
+        >
+    </label>
+
+    <div class="space-y-2 col-span-2">
+        <button
+            type="button"
+            class="btn w-full"
+            onclick="evaluate_profile()"
+        >Go</button>
+
+        <button
+            type="button"
+            class="btn bg-transparent border border-current text-brand w-full"
+        >Back</button>
+    </div>
 </div>
 
     {% endblock %}

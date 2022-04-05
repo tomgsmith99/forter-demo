@@ -13,12 +13,13 @@ function login() {
 
     if (user.use_case == "profile") {
 
-        $("#login_users").hide()
+        $("#login_form").hide()
 
-        update_ui("login_profile", {})
+        $("#welcome_login_username").html(user.first_name)
+
+        $("#login_success").show()
     }
     else {
-
         $.post(
             "/login", {
                 email: email,
@@ -30,8 +31,6 @@ function login() {
             console.log("response:")
 
             console.dir(data)
-
-            $("#login_users").hide()
 
             $("#login_form").hide()
 
@@ -45,12 +44,12 @@ function login() {
                     $("#welcome_login_username").html(user.first_name)
 
                     $("#login_success").show()
-                }
 
+                    $("#forter_decision_approve").show()
+                }
                 else if (data.forter_decision == "DECLINE") {
                     $("#login_decline").show()
                 }
-
                 else if (data.forter_decision == "VERIFICATION_REQUIRED") {
 
                     localStorage.setItem("factors", JSON.stringify(data.factors))

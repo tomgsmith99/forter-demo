@@ -18,13 +18,14 @@ function show_profile() {
 
 function update_profile() {
 
-	const first_name = localStorage.getItem("first_name")
+    const user_raw = localStorage.getItem("user")
 
-	console.log("the user is: " + localStorage.getItem("first_name"))
+    const user = JSON.parse(user_raw)
 
-	$("#mfa_response_div").hide()
-	$("#mfa_success").hide()
-	$("#update_profile").hide()
+    if (user.use_case != "profile") {
+    	show_profile()
+    	return
+    }
 
     $.post(
         "/update_profile", {
@@ -42,39 +43,36 @@ function update_profile() {
 
     	if (data.forterDecision == "VERIFICATION_REQUIRED") {
 
-    		$("#user_profile").hide()
+		    const user_raw = localStorage.getItem("user")
 
-    		$("#factors_list_div").show()
+		   	const user = JSON.parse(user_raw)
 
-    		for (factor of data.factors) {
+		   	const user_id = localStorage.getItem("user_id")
 
-    			if (factor.factorType == "question") {
-    				$("#security_question_factor").show()
-    				localStorage.setItem("security_question", factor.question_text)
-    				localStorage.setItem("question_factor_id", factor.id)
-    			}
-    			else if (factor.factorType == "email") {
-    				$("#email_factor").show()
-    				$("#email").html(factor.email)
-    				localStorage.setItem("email_factor_id", factor.id)
-    			}
-    		}
+            localStorage.setItem("factors", JSON.stringify(data.factors))
+
+			$("#choose_factor").show()
+
     	}
     	else if (data.forterDecision == "APPROVE") {
 
     		$("#user_profile").hide()
-    		$("#profile_result_div").show()
-    		$("#profile_result").html("Your profile was successfully updated.")
-    		$("#forter_decision_div").show()
-    		$("#forter_decision").html(data.forterDecision)
+
+    		$("#login_success").hide()
+
+    		$("#decline_header").hide()
+
+    		show_profile()
 		}
     	else if (data.forterDecision == "DECLINE") {
 
     		$("#user_profile").hide()
-    		$("#profile_result_div").show()
-    		$("#profile_result").html("Sorry, something's not quite right. Please contact customer support.")
-    		$("#forter_decision_div").show()
-    		$("#forter_decision").html(data.forterDecision)
+
+    		$("#login_success").hide()
+
+    		$("#decline_header").hide()
+
+    		$("#login_decline").show()
         }
     })
 }
