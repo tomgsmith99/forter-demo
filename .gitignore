@@ -1,6 +1,6 @@
 .DS_Store
 env*
-!.env_example.txt
+!env_example.txt
 .env*
 !.env_example
 node_modules
