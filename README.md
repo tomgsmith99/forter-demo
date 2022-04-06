@@ -22,11 +22,13 @@ or, you can download and inflate the zip archive from the project's git home pag
 
 Next, copy the `.env_example` file to a file called `.env`
 
+(If you don't see the .env_example file, you might need to tell your OS to show hidden files. On a Mac, it's command-shift-.)
+
 Add values for OKTA_API_KEY, PUBLIC_PASSWORD, and FORTER_KEY. These values can be obtained from the Google Doc that describes this demo.
 
 Install the required Node modules:
 
-`npm -i`
+`npm install`
 
 ## Running ##
 
