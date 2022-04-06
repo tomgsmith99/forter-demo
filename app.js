@@ -7,8 +7,6 @@ var morgan = require('morgan')
 
 const nunjucks = require('nunjucks')
 
-var session = require('express-session')
-
 /*************************************************/
 
 let config = require('./config.json')
@@ -39,8 +37,6 @@ app.use(express.urlencoded({extended: true}))
 // app.use(morgan('combined'))
 
 app.use(express.static('public'))
-
-app.use(session({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false}))
 
 nunjucks
     .configure('views', {
@@ -76,19 +72,10 @@ app.get('/', (req, res) => {
 	res.render ('index.html', config)
 })
 
-app.get('/session', function (req, res) {
-	if (req.session.authenticated) {
-		res.json({authenticated: true})
-	}
-	else {
-		res.json({authenticated: false})
-	}
-})
-
-app.get('/log_out', function (req, res) {
-	req.session.authenticated = false
-	res.sendStatus(200)
-})
+// app.get('/log_out', function (req, res) {
+// 	req.session.authenticated = false
+// 	res.sendStatus(200)
+// })
 
 app.get('/users', function (req, res) {
 	res.json(users)
