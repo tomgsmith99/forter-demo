@@ -1,5 +1,5 @@
 
-require('dotenv').config()
+require('dotenv').config({ path: 'env.txt' })
 
 const express = require('express')
 
