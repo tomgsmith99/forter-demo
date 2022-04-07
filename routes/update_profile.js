@@ -1,6 +1,8 @@
 
 const axios = require('axios')
 
+const utils = require('../utils.js')
+
 ////////////////////////////////////////////////////
 
 module.exports = function(app){
@@ -45,7 +47,7 @@ module.exports = function(app){
 
 		  if (response.data.forterDecision == "VERIFICATION_REQUIRED") {
 
-		  	get_factors(user_id, function(err, factors_raw) {
+		  	utils.get_factors(user_id, function(err, factors_raw) {
 
 		  		if (err) console.log(err)
 
@@ -85,28 +87,28 @@ module.exports = function(app){
 	})
 }
 
-function get_factors(user_id, callback) {
+// function get_factors(user_id, callback) {
 
-	const url = process.env.BASE_URL
-	const apikey = process.env.OKTA_API_KEY
+// 	const url = process.env.BASE_URL
+// 	const apikey = process.env.OKTA_API_KEY
 
-	const config = {
-	  	method: 'get',
-	  	url: `${url}/api/v1/users/${user_id}/factors`,
-		headers: { 
-			'Accept': 'application/json', 
-			'Content-Type': 'application/json', 
-			'Authorization': `SSWS ${apikey}`
-		}
-	}
+// 	const config = {
+// 	  	method: 'get',
+// 	  	url: `${url}/api/v1/users/${user_id}/factors`,
+// 		headers: { 
+// 			'Accept': 'application/json', 
+// 			'Content-Type': 'application/json', 
+// 			'Authorization': `SSWS ${apikey}`
+// 		}
+// 	}
 
-	axios(config)
-	.then(function (response) {
-	  console.log(JSON.stringify(response.data))
+// 	axios(config)
+// 	.then(function (response) {
+// 	  console.log(JSON.stringify(response.data))
 
-	  return callback(null, response.data)
-	})
-	.catch(function (error) {
-	  console.log(error)
-	})
-}
+// 	  return callback(null, response.data)
+// 	})
+// 	.catch(function (error) {
+// 	  console.log(error)
+// 	})
+// }
