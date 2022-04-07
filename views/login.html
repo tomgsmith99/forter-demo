@@ -2,7 +2,17 @@
 
 {% block main %}
 <div
-    class="grid grid-cols-2 gap-x-4 gap-y-8 items-center rounded-xl p-8 bg-gray-50 border border-gray-100" x-data="{open: false}" id="login_form">
+    class="grid grid-cols-2 gap-x-4 gap-y-8 items-center rounded-xl p-8 bg-gray-50 border border-gray-100"
+    x-data="{
+        open: false,
+
+        select(username) {
+            select_user(username)
+            this.open = false
+        },
+    }"
+    id="login_form"
+>
 
     <div class="col-span-2 flex justify-between items-center">
         <h1 class="text-xl font-bold">Sign In</h1>
@@ -36,7 +46,7 @@
                 <button
                     type="button"
                     class="block w-full text-left px-4 py-2 hover:bg-gray-50"
-                    @click="select_user('{{username}}')"
+                    @click="select('{{username}}')"
                 >{{ data.full_name }}</button>
 
                 {% endif %}
@@ -45,7 +55,7 @@
                 <button
                     type="button"
                     class="block w-full text-left px-4 py-2 hover:bg-gray-50"
-                    @click="select_user('{{username}}')"
+                    @click="select('{{username}}')"
                 >{{ data.full_name }}</button>
 
                 {% endif %}
