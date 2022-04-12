@@ -5,6 +5,8 @@ function show_profile() {
 
     const user = JSON.parse(user_raw)
 
+    $("#edit_profile_button").hide()
+
 	$("#user_profile").show()
 
 	$("#first_name").val(user.first_name)
@@ -39,6 +41,7 @@ function update_profile() {
     	console.dir(data)
 
     	$("#forter_result_div").show()
+
     	$("#forter_result").html(data.forterDecision)
 
     	if (data.forterDecision == "VERIFICATION_REQUIRED") {
