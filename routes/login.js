@@ -54,10 +54,7 @@ module.exports = function(app){
 
 			const users = req.app.get('users')
 
-			var obj = {}
-
 			if (response.data.status && response.data.status == "SUCCESS") {
-				obj.primary_authn = response.data.status
 
 				// okta user id
 				const user_id = response.data._embedded.user.id
