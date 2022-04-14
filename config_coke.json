@@ -1,0 +1,13 @@
+
+DEMO_BRAND="Coca Cola"
+DEMO_COLOR="#f40000"
+DEMO_FONT="Montserrat"
+DEMO_LOGO="https://us.coca-cola.com/content/dam/nagbrands/us/coke/en/coca-cola-logo.svg"
+
+DEMO_ARTICLE1_IMG="https://images.unsplash.com/photo-1596803244618-8dbee441d70b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+DEMO_ARTICLE1_TITLE="This is an Article. You Can Customize This Text."
+DEMO_ARTICLE1_TEXT="Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum."
+
+DEMO_ARTICLE2_IMG="https://images.unsplash.com/photo-1594971475674-6a97f8fe8c2b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+DEMO_ARTICLE2_TITLE="Another Article Goes Here"
+DEMO_ARTICLE2_TEXT="Vestibulum id ligula porta felis euismod semper."
