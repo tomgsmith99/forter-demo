@@ -1,17 +1,18 @@
 
-const path = './env.txt'
+// const path = './env.txt'
 
-try {
-  if (fs.existsSync(path)) {
-	require('dotenv').config({ path: 'env.txt' })
-  }
-  else {
-  	require('dotenv').config()
-  }
-} catch(err) {
-  console.error(err)
-}
+// try {
+//   if (fs.existsSync(path)) {
+// 	require('dotenv').config({ path: 'env.txt' })
+//   }
+//   else {
+//   	require('dotenv').config()
+//   }
+// } catch(err) {
+//   console.error(err)
+// }
 
+require('dotenv').config({ path: 'env.txt' })
 
 const express = require('express')
 
