@@ -46,6 +46,10 @@ module.exports = function(app){
 		  "eventTime": Date.now()
 		})
 
+		console.log("the data object being sent to Forter is:")
+
+		console.dir(data)
+
 		const config = {
 		  auth: {
 			username: process.env.FORTER_KEY

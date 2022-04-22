@@ -13,9 +13,9 @@ let config = require('./config.json')
 config.public_password = process.env.PUBLIC_PASSWORD
 
 const ip_addresses = {
-	APPROVE: "0.0.0.1",
-	DECLINE: "0.0.0.2",
-	VERIFICATION_REQUIRED: "0.0.0.4"
+	APPROVE: '0.0.0.1',
+	DECLINE: '0.0.0.2',
+	VERIFICATION_REQUIRED: '0.0.0.4'
 }
 
 const users_raw = require('./users.json')
