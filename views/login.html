@@ -50,6 +50,11 @@
                 >{{ data.full_name }}</button>
 
                 {% endif %}
+                {% endfor %}
+
+                <hr>
+
+                {% for username, data in users %}
 
                 {% if data.profile %}
                 <button
