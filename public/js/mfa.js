@@ -1,7 +1,7 @@
 
 function select_factor() {
 
-	const selected_factor = $("#factor_type").val()
+	const selected_factor = $('input[name="method"]:checked').val()
 
 	const factors_raw = localStorage.getItem("factors")
 
@@ -16,6 +16,10 @@ function select_factor() {
 		if (selected_factor == factor.factorType) {
 			factor_id = factor.id
 			localStorage.setItem("factor_id", factor.id)
+
+			if (factor.factorType == 'question') {
+				localStorage.setItem('question', factor.question_text)
+			}
 		}
 	}
 
@@ -42,7 +46,10 @@ function select_factor() {
 	    })
 	}
 	else {
-	    msg = "<p>" + localStorage.getItem("security_question") + "</p>"	
+
+		$("#factor_question_div").show()
+
+		$("#security_question").html(localStorage.getItem("question"))
 	}
 }
 
@@ -50,12 +57,21 @@ function submit_factor(factor_type) {
 
 	console.log("the factor type is: " + factor_type)
 
-	console.log("the factor value is: " + $("#email_code").val())
+	let response_val = ''
+
+	if (factor_type == 'email') {
+		response_val = $("#email_code").val()
+	}
+	else {
+		response_val = $("#security_answer").val()
+	}
+
+	console.log("the factor value is: " + response_val)
 
 	$.post(
     "/mfa_response", {
     	factor_type: factor_type,
-        mfa_response: $("#email_code").val(),
+        mfa_response: response_val,
         factor_id: localStorage.getItem("factor_id"),
         user_id: localStorage.getItem("user_id")
     })
@@ -71,6 +87,7 @@ function submit_factor(factor_type) {
 
 		$("#login_success").show()
 		$("#factor_email").hide()
+		$("#factor_question_div").hide()
 		$("#choose_factor").hide()
 		$("#welcome_login_username").html(user.first_name)
 

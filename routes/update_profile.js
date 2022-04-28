@@ -48,29 +48,12 @@ module.exports = function(app){
 
 		  if (response.data.forterDecision == "VERIFICATION_REQUIRED") {
 
-		  	utils.get_factors(user_id, function(err, factors_raw) {
+		  	utils.get_factors(user_id, function(err, factors) {
 
-		  		if (err) console.log(err)
+		  		if (err) {
+		  			console.log(err)
 
-		  		let factors = []
-
-		  		for (factor of factors_raw) {
-
-		  			console.log(factor)
-
-		  			let f = {
-		  				id: factor.id,
-		  				factorType: factor.factorType
-		  			}
-
-		  			if (factor.factorType == "question") {
-		  				f.question_text = factor.profile.questionText
-		  			}
-		  			else if (factor.factorType == "email") {
-		  				f.email = factor.profile.email
-		  			}
-
-		  			factors.push(f)
+		  			res.json({error: err})
 		  		}
 
 		  		response.data.factors = factors

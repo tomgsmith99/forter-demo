@@ -13,6 +13,7 @@ module.exports = function(app){
 
 		const config = req.app.get('config')
 
+		// force a new object to be created
 		let obj = JSON.parse(JSON.stringify(config))
 
 		obj.users = req.app.get('users')
@@ -103,29 +104,12 @@ module.exports = function(app){
 
 					if (response.data.forterDecision == "VERIFICATION_REQUIRED") {
 
-					  	utils.get_factors(user_id, function(err, factors_raw) {
+					  	utils.get_factors(user_id, function(err, factors) {
 
-					  		if (err) console.log(err)
+					  		if (err) {
+					  			console.log(err)
 
-					  		let factors = []
-
-					  		for (factor of factors_raw) {
-
-					  			console.log(factor)
-
-					  			let f = {
-					  				id: factor.id,
-					  				factorType: factor.factorType
-					  			}
-
-					  			if (factor.factorType == "question") {
-					  				f.question_text = factor.profile.questionText
-					  			}
-					  			else if (factor.factorType == "email") {
-					  				f.email = factor.profile.email
-					  			}
-
-					  			factors.push(f)
+					  			res.json({error: err})
 					  		}
 
 					  		obj.factors = factors

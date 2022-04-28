@@ -188,6 +188,26 @@
     >Verify Code</a>
 </div>
 
+<div
+    class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8"
+    x-data="{ code: null }" id="factor_question_div" style="display: none;"
+>
+    <h1 class="text-xl font-bold">Verification required</h1>
+
+    <p id = 'security_question'></p>
+
+    <input
+        type="text"
+        id="security_answer"
+    >
+
+    <button
+        type="button"
+        class="btn w-full"
+        onclick="submit_factor('question')"
+    >Verify Answer</a>
+</div>
+
 <div class="text-center font-bold" id="use_another_method" style="display: none;">
     <a
         href="#"
