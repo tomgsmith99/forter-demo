@@ -99,7 +99,7 @@
 {% include 'partials/already-have.html' %}
 
 <div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="reg_decline" style="display: none;">
-    <h1 class="text-xl font-bold">Sign In</h1>
+    <h1 class="text-xl font-bold">Sign Up</h1>
     <p>Sorry, something is not quite right. Please contact customer support for further assistance.</p>
     {% include "partials/decision-decline.html" %}
 
@@ -115,6 +115,9 @@
 <div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="reg_approve" style="display:none">
     <h1 class="text-xl font-bold">Success!</h1>
     <p>Thanks for creating an account with us, <span id="first_name_welcome"></span>!</p>
+
+    <p>Your coupon code is: <b>FVSXH</b></p>
+
     {% include "partials/decision-approve.html" %}
 </div>
 

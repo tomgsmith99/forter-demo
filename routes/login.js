@@ -18,7 +18,11 @@ module.exports = function(app){
 
 		obj.users = req.app.get('users')
 
+		obj.home = false // why does obj.home = true persist?
+
 		obj.login = true
+
+		console.dir(obj)
 
 		res.render ('login.html', obj)
 	})

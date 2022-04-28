@@ -13,6 +13,8 @@ module.exports = function(app){
 
 		let obj = JSON.parse(JSON.stringify(config))
 
+		obj.home = false
+
 		obj.register = true
 
 		obj.users = req.app.get('users')

@@ -123,8 +123,9 @@
 </div>
 
 <div
-    class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8"
-    x-data="{ next: null }" id="choose_factor" style="display: none;">
+    class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" x-data="{ next: null }" id="choose_factor" style="display: none;">
+
+    {% include "partials/decision-verify.html" %}
 
     <h1 class="text-xl font-bold">Verification required</h1>
     <p>We need to verify your identity. Please choose from one of the following methods:</p>
