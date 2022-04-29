@@ -89,7 +89,7 @@ function get_users(users) {
 
 		users[user].username = (users[user].first_name + "." + users[user].last_name).toLowerCase()
 
-		users[user].email_address = users[user].username + "@mailinator.com"
+		// users[user].email_address = users[user].username + "@mailinator.com"
 
 		const expected_response = users[user].expected_response
 

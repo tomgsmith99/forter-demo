@@ -64,6 +64,10 @@ module.exports = function(app){
 				// okta user id
 				const user_id = response.data._embedded.user.id
 
+				console.log("the user id from okta is: ")
+
+				console.log(user_id)
+
 				const user = users[user_id]
 
 				const data = JSON.stringify({

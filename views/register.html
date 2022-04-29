@@ -45,7 +45,7 @@
                     type="button"
                     class="block w-full text-left px-4 py-2 hover:bg-gray-50"
                     @click="select('{{username}}')"
-                >{{ data.full_name }}</button>
+                >{{ data.display_name }}</button>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -104,7 +104,7 @@
     {% include "partials/decision-decline.html" %}
 
     <a
-        href="#"
+        href="/register"
         class="btn w-full"
     >Back</a>
 
@@ -119,6 +119,12 @@
     <p>Your coupon code is: <b>FVSXH</b></p>
 
     {% include "partials/decision-approve.html" %}
+
+    <a
+        href="/register"
+        class="btn w-full"
+    >Back</a>
+
 </div>
 
 
