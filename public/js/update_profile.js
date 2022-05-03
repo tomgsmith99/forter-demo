@@ -32,7 +32,8 @@ function update_profile() {
     $.post(
         "/update_profile", {
             user_id: localStorage.getItem("user_id"),
-            forter_token: localStorage.getItem("forter_token")
+            forter_token: localStorage.getItem("forter_token"),
+            use_case_detail: user.use_case_detail
     })
     .done(function( data ) {
 
@@ -64,6 +65,8 @@ function update_profile() {
     		$("#login_success").hide()
 
     		$("#decline_header").hide()
+
+            $("#forter_approve_in_app").show()
 
     		show_profile()
 		}

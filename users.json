@@ -8,7 +8,8 @@
 		"phone": "613-555-1212",
 		"expected_response": "APPROVE",
 		"login": true,
-		"use_case": "login"
+		"use_case": "login",
+		"use_case_detail": "login_approve"
 	},
 	"00u12h404fjSQ6JOs0h8": {
 		"accountId": "clark-abc-123",
@@ -19,7 +20,8 @@
 		"phone": "214-555-1212",
 		"expected_response": "VERIFICATION_REQUIRED",
 		"login": true,
-		"use_case": "login"
+		"use_case": "login",
+		"use_case_detail": "login_challenge_m"
 	},
 	"00u17da8uuwpZSIsD0h8": {
 		"accountId": "clark-abc-123",
@@ -30,18 +32,20 @@
 		"phone": "214-555-1212",
 		"expected_response": "VERIFICATION_REQUIRED",
 		"login": true,
-		"use_case": "login"
+		"use_case": "login",
+		"use_case_detail": "login_challenge_y"
 	},
-	"00u12h3y4wdZxVq7m0h8": {
-		"accountId": "lex-abc-123",
-		"first_name": "Lex",
-		"last_name": "Luthor",
-		"display_name": "Lex Luthor",
-		"email_address": "lex.luthor@mailinator.com",
-		"phone": "562-555-1212",
+	"lois_target": {
+		"accountId": "lois-abc-123",
+		"first_name": "Lois",
+		"last_name": "Lane",
+		"display_name": "(Lois Lane)",
+		"email_address": "lois.lane@mailinator.com",
+		"phone": "613-555-1212",
 		"expected_response": "DECLINE",
 		"login": true,
-		"use_case": "login"
+		"use_case": "login",
+		"use_case_detail": "login_decline"
 	},
 	"selina": {
 		"accountId": "selina-abc-123",
@@ -52,7 +56,8 @@
 		"phone": "815-555-1212",
 		"expected_response": "APPROVE",
 		"registration": true,
-		"use_case": "registration"
+		"use_case": "registration",
+		"use_case_detail": "registration_approve"
 	},
 	"catelyn": {
 		"accountId": "cat-abc-123",
@@ -63,7 +68,8 @@
 		"phone": "772-555-1212",
 		"expected_response": "DECLINE",
 		"registration": true,
-		"use_case": "registration"
+		"use_case": "registration",
+		"use_case_detail": "registration_decline_policy"
 	},
 	"joaquin": {
 		"accountId": "joaquin-abc-123",
@@ -74,7 +80,8 @@
 		"phone": "617-555-1212",
 		"expected_response": "DECLINE",
 		"registration": true,
-		"use_case": "registration"
+		"use_case": "registration",
+		"use_case_detail": "registration_decline_fraud"
 	},
 	"leia": {
 		"accountId": "leia-abc-123",
@@ -85,7 +92,8 @@
 		"phone": "314-555-1212",
  		"expected_response": "APPROVE",
  		"profile": true,
-       	"use_case": "profile"
+       	"use_case": "profile",
+		"use_case_detail": "profile_approve"
 	},
 	"00u15j3dq4ntM2SQX0h8": {
 		"accountId": "lando-abc-123",
@@ -96,17 +104,19 @@
 		"phone": "518-555-1212",
  		"expected_response": "VERIFICATION_REQUIRED",
  		"profile": true,
- 		"use_case": "profile"
+ 		"use_case": "profile",
+		"use_case_detail": "profile_challenge"
 	},
-	"darth": {
-		"accountId": "darth-abc-123",
-		"first_name": "Darth",
-		"last_name": "Vader",
-		"display_name": "Fraudster",
-		"email_address": "darth.vader@mailinator.com",
-		"phone": "508-555-1212",
-		"expected_response": "DECLINE",
+	"leia_target": {
+		"accountId": "leia-abc-123",
+        "first_name": "Leia",
+        "last_name": "Organa",
+        "display_name": "(Leia Organa)",
+        "email_address": "leia.organa@mailinator.com",
+		"phone": "314-555-1212",
+ 		"expected_response": "APPROVE",
  		"profile": true,
-		"use_case": "profile"
+       	"use_case": "profile",
+		"use_case_detail": "profile_decline"
 	}
 }

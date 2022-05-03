@@ -11,10 +11,13 @@ module.exports = function(app){
 
 		const users = req.app.get('users')
 
-		const user_id = req.body.user_id
-		const forter_token = req.body.forter_token
+		const { forter_token, use_case_detail, user_id } = req.body
 
 		const user = users[user_id]
+
+		if (use_case_detail == 'profile_decline') {
+			user.ip_address = '0.0.0.2'
+		}
 
 		console.log("the user_id is: " + user_id)
 		console.log("the forter token is: " + forter_token)

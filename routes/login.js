@@ -29,11 +29,13 @@ module.exports = function(app){
 
 	app.post('/login', function (req, res) {
 
-		const {email, password, forter_token}  = req.body
+		const {email, password, forter_token, use_case_detail}  = req.body
 
 		console.log("the email is: " + email)
 
 		console.log("the forter token is: " + forter_token)
+
+		console.log("the use_case_detail is: " + use_case_detail)
 
 		var data = JSON.stringify({
 		  "username": email,
@@ -69,6 +71,10 @@ module.exports = function(app){
 				console.log(user_id)
 
 				const user = users[user_id]
+
+				if (use_case_detail == 'login_decline') {
+					user.ip_address = '0.0.0.2'
+				}
 
 				const data = JSON.stringify({
 				  "accountId": user.accountId,

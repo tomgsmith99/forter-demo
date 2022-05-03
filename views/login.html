@@ -114,7 +114,7 @@
     {% include "partials/decision-decline.html" %}
 
     <a
-        href="#"
+        href="/login"
         class="btn w-full"
     >Back</a>
 
@@ -232,6 +232,18 @@
         class="btn w-full"
         onclick="update_profile()"
     >Edit profile</button>
+</div>
+
+<div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="forter_approve_in_app" style="display: none;">
+    <div id = "forter_decision_approve">
+    {% include "partials/decision-approve.html" %}
+    </div>
+</div>
+
+<div class="rounded-xl p-8 bg-gray-50 border border-gray-100 space-y-8" id="forter_decline_in_app" style="display: none;">
+    <div id = "forter_decision_approve">
+    {% include "partials/decision-decline.html" %}
+    </div>
 </div>
 
 <div

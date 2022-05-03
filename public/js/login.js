@@ -24,7 +24,8 @@ function login() {
             "/login", {
                 email: email,
                 password: password,
-                forter_token: localStorage.getItem("forter_token")
+                forter_token: localStorage.getItem("forter_token"),
+                use_case_detail: user.use_case_detail
         })
         .done(function( data ) {
 
