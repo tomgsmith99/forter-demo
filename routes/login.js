@@ -73,13 +73,16 @@ module.exports = function(app){
 				const user = users[user_id]
 
 				if (use_case_detail == 'login_decline') {
-					user.ip_address = '0.0.0.2'
+					ip_address = '0.0.0.2'
+				}
+				else {
+					ip_address = user.ip_address
 				}
 
 				const data = JSON.stringify({
 				  "accountId": user.accountId,
 				  "connectionInformation": {
-				    "customerIP": user.ip_address,
+				    "customerIP": ip_address,
 				    "userAgent": req.headers['user-agent'],
 				    "forterTokenCookie": forter_token
 				  },

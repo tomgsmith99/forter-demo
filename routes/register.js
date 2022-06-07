@@ -38,14 +38,25 @@ module.exports = function(app){
 
 		console.log("the forter token is: " + forter_token)
 
+		const stamp = Date.now()
+
 		const data = JSON.stringify({
-		  "accountId": "NO_ACCOUNT_ID",
-		  "connectionInformation": {
-		    "customerIP": user.ip_address,
-		    "userAgent": req.headers['user-agent'],
-		    "forterTokenCookie": forter_token
-		  },
-		  "eventTime": Date.now()
+			"accountId": "NO_ACCOUNT_ID",
+			"accountData": {
+				"created": stamp,
+    			"personalDetails": {
+      				"firstName": first_name,
+      				"lastName": last_name,
+      				"email": email
+      			},
+      			"assetsInAccount": {}
+      		},
+		  	"connectionInformation": {
+		    	"customerIP": user.ip_address,
+		    	"userAgent": req.headers['user-agent'],
+		    	"forterTokenCookie": forter_token
+		  	},
+		  	"eventTime": stamp
 		})
 
 		console.log("the data object being sent to Forter is:")
