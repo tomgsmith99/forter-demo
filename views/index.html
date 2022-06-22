@@ -6,7 +6,7 @@
     <h1 class="text-base font-bold">Welcome to {{ brand }}</h1>
     <p>Please create an account or sign in to get started.</p>
     <br>
-    <p><i><b>Sign up today</b> to receive a coupon for $10 off your first order!</i></p>
+    {{ promo | safe }}
 </div>
 
 <a
