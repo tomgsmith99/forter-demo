@@ -23,13 +23,19 @@ module.exports = function(app){
 		console.log("the forter token is: " + forter_token)
 
 		const data = JSON.stringify({
-		  "accountId": user.accountId,
-		  "connectionInformation": {
-		    "customerIP": user.ip_address,
-		    "userAgent": req.headers['user-agent'],
-		    "forterTokenCookie": forter_token
-		  },
-		  "eventTime": Date.now()
+		  	"accountId": user.accountId,
+		  	"connectionInformation": {
+		    	"customerIP": user.ip_address,
+		    	"userAgent": req.headers['user-agent'],
+		    	"forterTokenCookie": forter_token
+		  	},
+		  	"eventTime": Date.now(),
+		  	"accountOwner": {
+				"created": 1641057641,
+				"email": user.email_address,
+				"firstName": user.first_name,
+				"lastName": user.last_name
+			}
 		})
 
 		const config = {

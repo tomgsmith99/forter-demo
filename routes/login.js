@@ -88,7 +88,14 @@ module.exports = function(app){
 				  },
 				  "loginMethodType": "PASSWORD",
 				  "loginStatus": "SUCCESS",
-				  "eventTime": Date.now()
+				  "eventTime": Date.now(),
+				  "accountData": {
+				  	"assetsInAccount": {},
+				  	"created": 1641057641,
+				  	"personalDetails": {
+				  		"email": email
+				  	}
+				  }
 				})
 
 				console.log("the data object being sent to Forter is:")
