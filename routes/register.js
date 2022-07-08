@@ -7,11 +7,11 @@ var qs = require('qs')
 
 module.exports = function(app){
 
+	const cfg = app.get('config')
+
 	app.get('/register', (req, res) => {
 
-		const config = req.app.get('config')
-
-		let obj = JSON.parse(JSON.stringify(config))
+		let obj = JSON.parse(JSON.stringify(cfg))
 
 		obj.home = false
 
@@ -68,10 +68,11 @@ module.exports = function(app){
 			username: process.env.FORTER_KEY
 		  },
 		  method: 'post',
-		  url: process.env.FORTER_TENANT + '/v2/accounts/signup/NO_ACCOUNT_ID',
+		  url: process.env.FORTER_BASE_URL + '/v2/accounts/signup/NO_ACCOUNT_ID',
 		  headers: { 
-		    'api-version': '2.36', 
-		    'Content-Type': 'application/json'
+		    'api-version': process.env.FORTER_API_VERSION, 
+		    'Content-Type': 'application/json',
+		    'x-forter-siteid': process.env.FORTER_SITE_ID
 		  },
 		  data: data
 		}

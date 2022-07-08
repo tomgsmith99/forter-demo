@@ -8,8 +8,11 @@ const nunjucks = require('nunjucks')
 
 /*************************************************/
 
-let config = require('./config.json')
+const config = require('./config/brand.json')
 
+config.forter_eu = process.env.FORTER_EU
+config.forter_site_id = process.env.FORTER_SITE_ID
+config.year = new Date().getFullYear()
 config.public_password = process.env.PUBLIC_PASSWORD
 
 const ip_addresses = {
@@ -18,7 +21,7 @@ const ip_addresses = {
 	VERIFICATION_REQUIRED: '0.0.0.4'
 }
 
-const users_raw = require('./users.json')
+const users_raw = require('./data/users.json')
 
 const users = get_users(users_raw)
 
@@ -32,8 +35,6 @@ app.set('users', users)
 app.use(express.json())
 
 app.use(express.urlencoded({extended: true}))
-
-// app.use(morgan('combined'))
 
 app.use(express.static('public'))
 
@@ -71,11 +72,6 @@ app.get('/', (req, res) => {
 	res.render ('index.html', config)
 })
 
-// app.get('/log_out', function (req, res) {
-// 	req.session.authenticated = false
-// 	res.sendStatus(200)
-// })
-
 app.get('/users', function (req, res) {
 	res.json(users)
 })
@@ -88,8 +84,6 @@ function get_users(users) {
 		users[user].full_name = users[user].first_name + " " + users[user].last_name
 
 		users[user].username = (users[user].first_name + "." + users[user].last_name).toLowerCase()
-
-		// users[user].email_address = users[user].username + "@mailinator.com"
 
 		const expected_response = users[user].expected_response
 

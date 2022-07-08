@@ -3,7 +3,7 @@ const axios = require('axios')
 
 ////////////////////////////////////////////////////
 
-const BASE_URL = process.env.BASE_URL
+const OKTA_BASE_URL = process.env.OKTA_BASE_URL
 const OKTA_API_KEY = process.env.OKTA_API_KEY
 
 ////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ module.exports = function(app){
 
 		const config = {
 		  method: 'post',
-		  url: `${BASE_URL}/api/v1/users/${user_id}/factors/${factor_id}/verify`,
+		  url: `${OKTA_BASE_URL}/api/v1/users/${user_id}/factors/${factor_id}/verify`,
 		  headers: { 
 		    'Accept': 'application/json', 
 		    'Content-Type': 'application/json', 
@@ -41,6 +41,8 @@ module.exports = function(app){
 		  },
 		  data: JSON.stringify(data)
 		}
+
+		console.dir(config)
 
 		axios(config)
 		.then(function (response) {
@@ -70,7 +72,7 @@ module.exports = function(app){
 
 		const config = {
 		  method: 'post',
-		  url: `${BASE_URL}/api/v1/users/${user_id}/factors/${factor_id}/verify`,
+		  url: `${OKTA_BASE_URL}/api/v1/users/${user_id}/factors/${factor_id}/verify`,
 		  headers: { 
 		    'Accept': 'application/json', 
 		    'Content-Type': 'application/json', 

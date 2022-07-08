@@ -9,12 +9,12 @@ const utils = require('../utils.js')
 
 module.exports = function(app){
 
+	const cfg = app.get('config')
+
 	app.get('/login', function (req, res) {
 
-		const config = req.app.get('config')
-
 		// force a new object to be created
-		let obj = JSON.parse(JSON.stringify(config))
+		let obj = JSON.parse(JSON.stringify(cfg))
 
 		obj.users = req.app.get('users')
 
@@ -48,13 +48,15 @@ module.exports = function(app){
 
 		var config = {
 		  method: 'post',
-		  url: process.env.BASE_URL + '/api/v1/authn',
+		  url: process.env.OKTA_BASE_URL + '/api/v1/authn',
 		  headers: { 
 		    'Accept': 'application/json', 
 		    'Content-Type': 'application/json'
 		  },
 		  data: data
 		}
+
+		console.dir(config)
 
 		axios(config)
 		.then(function (response) {
@@ -107,10 +109,11 @@ module.exports = function(app){
 					username: process.env.FORTER_KEY
 				  },
 				  method: 'post',
-				  url: process.env.FORTER_TENANT + '/v2/accounts/login/' + user.accountId,
-				  headers: { 
-				    'api-version': '2.36', 
-				    'Content-Type': 'application/json'
+				  url: process.env.FORTER_BASE_URL + '/v2/accounts/login/' + user.accountId,
+				  headers: {
+				  	'api-version': process.env.FORTER_API_VERSION,
+				    'Content-Type': 'application/json',
+				    'x-forter-siteid': process.env.FORTER_SITE_ID
 				  },
 				  data: data
 				}
@@ -153,6 +156,7 @@ module.exports = function(app){
 		})
 		.catch(function (error) {
 
+			console.dir(error)
 			console.log(error)
 
 			console.log(error.response.status)

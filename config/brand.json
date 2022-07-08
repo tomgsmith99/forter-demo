@@ -1,9 +1,7 @@
 {
 	"brand": "Summit Gear",
 	"color": "#0B5641",
-	"eu": "22g4zl{5jf5fjtlv1forxgiurqw1qhw2vwdwxv",
 	"font": "Montserrat",
-	"siteId": "63bf0782ae27",
 	"logo_url": "https://tomgsmith99-images.s3.amazonaws.com/forter/summit_gear/summit-gear.svg",
 	"logo_width": 200,
 	"article1_img": "https://tomgsmith99-images.s3.amazonaws.com/forter/summit_gear/holly-mandarich-UVyOfX3v0Ls-unsplash.jpg",
@@ -12,6 +10,5 @@
 	"article2_img": "https://tomgsmith99-images.s3.amazonaws.com/forter/summit_gear/alfred-boivin-XoM0eYSXWMs-unsplash.jpg",
 	"article2_title": "Earn Points For Fun",
 	"article2_text": "Every purchase brings you closer to a reward!",
-	"year": 2022,
 	"promo": "<b>Sign up today</b> to receive a coupon for $10 off your first order!"
 }

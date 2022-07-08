@@ -7,6 +7,8 @@ const utils = require('../utils.js')
 
 module.exports = function(app){
 
+	const cfg = app.get('config')
+
 	app.post('/update_profile', function (req, res) {
 
 		const users = req.app.get('users')
@@ -43,10 +45,11 @@ module.exports = function(app){
 			username: process.env.FORTER_KEY
 		  },
 		  method: 'post',
-		  url: process.env.FORTER_TENANT + '/v2/accounts/profile-access/' + user.accountId,
+		  url: process.env.FORTER_BASE_URL + '/v2/accounts/profile-access/' + user.accountId,
 		  headers: { 
-		    'api-version': '2.36', 
-		    'Content-Type': 'application/json'
+		    'api-version': process.env.FORTER_API_VERSION, 
+		    'Content-Type': 'application/json',
+		    'x-forter-siteid': process.env.FORTER_SITE_ID
 		  },
 		  data: data
 		}

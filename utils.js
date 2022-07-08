@@ -6,7 +6,7 @@ const axios = require('axios')
 module.exports = {
     get_factors: function(user_id, callback)
     {
-        const url = process.env.BASE_URL
+        const url = process.env.OKTA_BASE_URL
         const apikey = process.env.OKTA_API_KEY
 
         const config = {

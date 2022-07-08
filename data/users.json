@@ -93,7 +93,8 @@
  		"expected_response": "APPROVE",
  		"profile": true,
        	"use_case": "profile",
-		"use_case_detail": "profile_approve"
+		"use_case_detail": "profile_approve",
+		"created": 1641057641
 	},
 	"00u15j3dq4ntM2SQX0h8": {
 		"accountId": "lando-abc-123",
@@ -105,7 +106,8 @@
  		"expected_response": "VERIFICATION_REQUIRED",
  		"profile": true,
  		"use_case": "profile",
-		"use_case_detail": "profile_challenge"
+		"use_case_detail": "profile_challenge",
+		"created": 1641057641
 	},
 	"leia_target": {
 		"accountId": "leia-abc-123",
@@ -117,6 +119,7 @@
  		"expected_response": "APPROVE",
  		"profile": true,
        	"use_case": "profile",
-		"use_case_detail": "profile_decline"
+		"use_case_detail": "profile_decline",
+		"created": 1641057641
 	}
 }
