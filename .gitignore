@@ -5,3 +5,7 @@ env*
 !.env_example
 node_modules
 public/img
+
+config/brand*
+~config/brand_summit_gear.json
+~config/brand.json
