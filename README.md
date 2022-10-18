@@ -45,3 +45,7 @@ For each use-case, select a user from the drop-down to see a different Forter re
 * Leia Organa: APPROVE
 * Lando Calrissian: VERIFICATION REQUIRED
 * (Leia Organa): DECLINE
+
+## Customize ##
+
+Edit the file `config/brand.json` to customize the appearance of the demo.
